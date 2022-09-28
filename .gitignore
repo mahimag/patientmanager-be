@@ -5,7 +5,7 @@
 .idea/
 
 # Dist
-dist/
+# dist/
 
 # Logs
 logs
@@ -68,5 +68,3 @@ typings/
 
 *.pyc
 __pycache__
-
-.env
