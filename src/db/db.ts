@@ -1,9 +1,12 @@
 import Knex from "knex";
 import knexConfig from "./knexfile";
+import process from "process";
 
 // @ts-ignore
 import knexStringCase from "knex-stringcase";
 
-const knex = Knex(knexStringCase(knexConfig.development));
+const knex = Knex(
+  knexStringCase(knexConfig[process.env.NODE_ENV || "development"])
+);
 
 export default knex;
