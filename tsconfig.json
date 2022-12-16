@@ -12,7 +12,7 @@
     "noImplicitAny": true,
     "removeComments": true,
     "lib": ["es2015", "es2016", "es2017"],
-    "types": ["node"],
+    "types": ["node", "jest"],
     "noUnusedLocals": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,

@@ -14,10 +14,12 @@
     "migrate:make": "knex --migrations-directory src/db/migrations migrate:make",
     "migrate": "knex migrate:latest --knexfile src/db/knexfile.ts",
     "rollback": "knex migrate:rollback --knexfile src/db/knexfile.ts",
-    "migrate:prod": "knex migrate:latest --knexfile src/db/knexfile.js"
+    "migrate:prod": "knex migrate:latest --knexfile src/db/knexfile.js",
+    "test": "jest"
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/jest": "^29.2.4",
     "@types/multer": "^1.4.7",
     "bcrypt": "^5.0.1",
     "cloudinary": "^1.32.0",
@@ -25,12 +27,14 @@
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "http-status-codes": "^2.2.0",
+    "jest": "^29.3.1",
     "jsonwebtoken": "^8.5.1",
     "knex": "^2.3.0",
     "knex-stringcase": "^1.4.6",
     "multer": "^1.4.5-lts.1",
     "pg": "^8.8.0",
     "postgres": "^3.2.4",
+    "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.3",
     "winston": "^3.8.2"

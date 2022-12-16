@@ -51,6 +51,7 @@ class PatientModel {
   }
 
   public static async updatePatient(patient: Patient): Promise<Patient> {
+    console.log(patient);
     const [updatedPatient] = await db(PatientModel.table)
       .where({ id: patient.id })
       .update(patient)
