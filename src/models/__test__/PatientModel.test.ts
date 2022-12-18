@@ -1,6 +1,5 @@
-import Patient, { PatientToInsert } from "../../domain/Patient"
+import { PatientToInsert } from "../../domain/Patient"
 import PatientModel from "../PatientModel"
-
 
 const MockPatientData: PatientToInsert = {
   "firstname": "john",
@@ -45,12 +44,11 @@ describe("CRUD operation on patient data", () => {
     if(createResp && createResp.length) {
         const getResp =  await PatientModel.getPatient(createResp[0].id);
   
-        expect(getResp).toBeInstanceOf(Promise<Patient>);
-        expect(getResp.id).toBe(1);
-      }
-    if(createResp?.length) {
+        expect(getResp).toBeInstanceOf(Object);
+        expect(getResp.id).toBe(createResp[0].id);
+
         await PatientModel.deletePatient(createResp[0].id)
-    }
+      }
   })
 
   it ("should get a patient by email", async () => {
@@ -59,10 +57,9 @@ describe("CRUD operation on patient data", () => {
     if(createResp && createResp.length) {
         const getResp =  await PatientModel.getPatientByEmail(createResp[0].email);
   
-        expect(getResp).toBeInstanceOf(Promise<Patient>);
+        expect(getResp).toBeInstanceOf(Object);
         expect(getResp.email).toBe(createResp[0].email); 
-      }
-      if(createResp?.length) {
+
         await PatientModel.deletePatient(createResp[0].id)
       }
   })
@@ -71,12 +68,13 @@ describe("CRUD operation on patient data", () => {
     const createResp = await PatientModel.createPatient(MockPatientData);
 
     if(createResp && createResp.length) {
-        const getResp =  await PatientModel.getAllPatients(createResp[0].user_id);
+        const getResp =  await PatientModel.getAllPatients(createResp[0].userId);
   
         expect(getResp).toBeInstanceOf(Array);
-        expect(getResp).toBe(createResp[0].user_id); 
-      }
-      if(createResp?.length) {
+        for (let patient of getResp) {
+          expect(patient.userId).toBe(createResp[0].userId); 
+        }
+
         await PatientModel.deletePatient(createResp[0].id)
       }
   })
@@ -85,19 +83,17 @@ describe("CRUD operation on patient data", () => {
     const createResp = await PatientModel.createPatient(MockPatientData);
 
     if(createResp && createResp.length) {
-        const updateResp =  await PatientModel.updatePatient(createResp[0]);
-  
-        expect(updateResp).toBeInstanceOf(Promise<Patient>);
-        expect(updateResp.id).toBe(createResp[0].id);
-        //...
-      }
-      if(createResp?.length) {
+        const updateResp =  await PatientModel.updatePatient({
+          ...MockPatientData,
+          id: createResp[0].id,
+          address: "pokhara"
+        });
+
+        expect(updateResp).toBeInstanceOf(Object);
+        expect(updateResp.address).toBe("pokhara");
+
         await PatientModel.deletePatient(createResp[0].id)
       }
   })
 
-  
-
 })    
-
-
