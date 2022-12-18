@@ -49,8 +49,10 @@ class UserAccount {
     return updatedUser;
   }
 
-  public static async deleteUser(userId: number): Promise<void> {
-    await db(UserAccount.table).where({ id: userId }).delete();
+  public static async deleteUser(userId: number): Promise<number> {
+    const resp = await db(UserAccount.table).where({ id: userId }).delete();
+
+    return resp;
   }
 }
 

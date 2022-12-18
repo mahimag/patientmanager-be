@@ -70,8 +70,10 @@ class PatientModel {
     return updatedPatient;
   }
 
-  public static async deletePatient(patientId: number): Promise<void> {
-    await db(PatientModel.table).where({ id: patientId }).delete();
+  public static async deletePatient(patientId: number): Promise<number> {
+    const resp  = await db(PatientModel.table).where({ id: patientId }).delete();
+
+    return resp;
   }
 }
 
