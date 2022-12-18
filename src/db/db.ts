@@ -6,7 +6,7 @@ import process from "process";
 import knexStringCase from "knex-stringcase";
 
 const knex = Knex(
-  knexStringCase(knexConfig[process.env.NODE_ENV || "development"])
+  knexStringCase(knexConfig[process.env.ENV || "development"])
 );
 
 export default knex;
